@@ -8,8 +8,9 @@ export default class Client extends EventEmitter {
     }
 
     user;
-    login(token) {
-        this.ws.connect(token);
+    async login(token) {
+        await this.ws.connect(token);
+        this.emit('ready');
     }
 
     set user(user) {

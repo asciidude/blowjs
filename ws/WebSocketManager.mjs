@@ -8,7 +8,7 @@ export const debug = {
 export default class WebSocketManager {
     constructor(client) {
         this.client = client;
-        this.ws = new WebSocket(`${Constants.CANARY_URL}`);
+        this.ws = new WebSocket(Constants.WS_URL);
     }
 
     async sendHeartbeat() {
@@ -30,11 +30,11 @@ export default class WebSocketManager {
                 
                 switch(payload.message) {
                     case "AUTHENTICATION_REQUIRED":
-                        this.ws.send({
+                        this.ws.send(JSON.stringify({
                             'message': 'SEND_TOKEN',
                             'token': token,
                             'version': Constants.API_VERSION
-                        });
+                        }));
                         
                         break;
 
