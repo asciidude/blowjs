@@ -29,3 +29,6 @@ client.once('close', code => {
 
 client.login(process.env.TOKEN);
 ```
+
+##### Bubblez Approval
+###### [Bubblez.app](https://bubblez.app/library#blowjs) has approved blowjs
