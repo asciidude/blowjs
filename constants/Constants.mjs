@@ -2,5 +2,6 @@
 
 export const Constants = {
     WS_URL: 'wss://ws.bubblez.app/live',
-    CANARY_URL: 'wss://ws.bubblez.app/canary'
+    CANARY_URL: 'wss://ws.bubblez.app/canary',
+    API_VERSION: 1
 }

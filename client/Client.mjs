@@ -12,12 +12,4 @@ export default class Client extends EventEmitter {
         await this.ws.connect(token);
         this.emit('ready');
     }
-
-    set user(user) {
-        this.user = user;
-    }
-
-    get user() {
-        return this.user;
-    }
 }

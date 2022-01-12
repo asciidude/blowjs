@@ -1,14 +1,19 @@
 import WebSocket from 'ws';
+import EventEmitter from 'events';
 import { Constants } from '../constants/Constants.mjs';
 
 export const debug = {
     logEvents: false
 }
 
-export default class WebSocketManager {
+export default class WebSocketManager extends EventEmitter {
     constructor(client) {
+        super();
         this.client = client;
         this.ws = new WebSocket(Constants.WS_URL);
+        
+        this.connection_start = null;
+        this.connection_end = null;
     }
 
     async sendHeartbeat() {
@@ -18,18 +23,20 @@ export default class WebSocketManager {
     }
 
     async connect(token) {
-        if(!token) throw Error(`[blowjs | WebSocketManager]: No token has been provided`);
+        if(!token) throw `[blowjs | WebSocketManager]: No token has been provided`;
 
         try {
             this.ws.on('open', () => {
-                debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Successfully logged into the Bubblez API`) : 0;
+                debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Websocket opened`) : 0;
+                this.connection_start = Date.now();
             });
 
             this.ws.on('message', (data) => {
-                let payload = JSON.parse(data.toString());
-                
-                switch(payload.message) {
-                    case "AUTHENTICATION_REQUIRED":
+                const payload = JSON.parse(data.toString());
+                const { message } = payload;
+
+                switch(message) {
+                    case 'AUTHENTICATION_REQUIRED':
                         this.ws.send(JSON.stringify({
                             'message': 'SEND_TOKEN',
                             'token': token,
@@ -38,14 +45,28 @@ export default class WebSocketManager {
                         
                         break;
 
-                    case "AUTHENTICATED":
+                    case 'AUTHENTICATED':
+                        setInterval(() => {
+                            this.sendHeartbeat();
+                        }, 40000);
+                        break;
+
+                    case 'HEARTBEAT_MISSED':
                         this.sendHeartbeat();
                         break;
 
-                    case "HEARTBEAT_MISSED":
-                        this.sendHeartbeat();
+                    case 'HEARTBEAT_ACK':
+                        debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Heartbeat has been acknowledged`) : 0;
                         break;
                 }
+            });
+
+            this.ws.on('close', (code) => {
+                this.connection_end = Date.now();
+                debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Websocket closed on code ${code} and lasted ${this.connection_end - this.connection_start}ms`) : 0;
+                this.emit('close', code);
+                
+                if(code == 4004) throw `[blowjs | WebSocketManager]: The token provided was invalid`;
             });
         } catch(err) {
             console.error(`[blowjs | WebSocketManager]:\n${err}`);
