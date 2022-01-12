@@ -148,3 +148,6 @@ To create a reply, run `Client#replies.create(id, message, from, nsfw)`
 This will return an object containing:
 * id: reply id
 * post: post id
+
+##### Bubblez Approval
+###### [Bubblez.app](https://bubblez.app/library#blowjs) has approved blowjs
