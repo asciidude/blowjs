@@ -42,7 +42,6 @@ export default class WebSocketManager extends EventEmitter {
                             'token': token,
                             'version': Constants.API_VERSION
                         }));
-                        
                         break;
 
                     case 'AUTHENTICATED':
@@ -52,6 +51,7 @@ export default class WebSocketManager extends EventEmitter {
                         break;
 
                     case 'HEARTBEAT_MISSED':
+                        debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Heartbeat missed! Sending another heartbeat`) : 0;
                         this.sendHeartbeat();
                         break;
 
@@ -68,6 +68,11 @@ export default class WebSocketManager extends EventEmitter {
                 
                 if(code == 4004) throw `[blowjs | WebSocketManager]: The token provided was invalid`;
             });
+
+            process.once('SIGINT', async () => {
+                debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Process interrupt signal recieved, closing`) : 0;
+                await process.exit();
+            })
         } catch(err) {
             console.error(`[blowjs | WebSocketManager]:\n${err}`);
         }

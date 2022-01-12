@@ -5,6 +5,10 @@ export default class Client extends EventEmitter {
     constructor() {
         super();
         this.ws = new WebSocketManager(this);
+
+        this.ws.on('close', (code) => {
+            this.emit('close', code);
+        });
     }
 
     user;
@@ -13,3 +17,5 @@ export default class Client extends EventEmitter {
         this.emit('ready');
     }
 }
+
+export { WebSocketManager }
