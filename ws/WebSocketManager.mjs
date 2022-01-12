@@ -57,6 +57,7 @@ export default class WebSocketManager extends EventEmitter {
 
             process.once('SIGINT', async () => {
                 debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Process interrupt signal recieved, closing`) : 0;
+                this.client.emit('interrupt');
                 await process.exit();
             })
         } catch(err) {
