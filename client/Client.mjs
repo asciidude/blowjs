@@ -12,5 +12,3 @@ export default class Client extends EventEmitter {
         await this.ws.connect(token);
     }
 }
-
-export { WebSocketManager }

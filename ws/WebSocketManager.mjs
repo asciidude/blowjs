@@ -1,6 +1,7 @@
 import WebSocket from 'ws';
 import EventEmitter from 'events';
 import { Constants } from '../constants/Constants.mjs';
+import fetch from 'node-fetch';
 
 export const debug = {
     logEvents: false
@@ -44,7 +45,26 @@ export default class WebSocketManager extends EventEmitter {
                     }));
                 }
 
-                await import(`../handlers/${message}.mjs`).then(module => module.default(this.client, this, debug, payload));
+                if(message == 'AUTHENTICATED') {
+                    let params = new URLSearchParams();
+                    params.append('token', token);
+
+                    const user = await fetch(`${Constants.API_URL}/user/check`, {
+                        method: 'POST',
+                        body: params,
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    }).then(r => r.json());
+                    
+                    this.client.emit('ready', user);
+                
+                    setInterval(() => {
+                        this.sendHeartbeat();
+                    }, payload.heartbeatinterval || 40000);
+                
+                    return;
+                }
+
+                await import(`../handlers/${message}.mjs`).then(module => module.default(this, debug, payload));
             });
 
             this.ws.on('close', (code) => {
