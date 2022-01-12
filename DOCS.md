@@ -115,4 +115,36 @@ This will return an object containing:
 
 ## Replies
 
-This section is a work in progress, aka no information is yet provided.
+### The reply class
+The post class contains all available information about posts.
+
+```js
+{
+    client: Client,
+    id: String,
+    parentID: String,
+    author: String,
+    content: String,
+    nsfw: Boolean,
+    from: String,
+    edited: Boolean,
+    createdAt: Date
+}
+```
+
+
+### Creating a reply
+To create a reply, run `Client#replies.create(id, message, from, nsfw)`
+
+`Client` is the client object\
+`replies` is the Reply class, initialized with Client\
+`create()` is the create method
+
+`id` is the ID of the post to reply to\
+`message` is the message of the reply\
+`from` is the text by the creation timestamp\
+`nsfw` determines whether or not the reply is marked as nsfw
+
+This will return an object containing:
+* id: reply id
+* post: post id
