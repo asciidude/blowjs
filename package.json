@@ -4,10 +4,13 @@
   "main": "index.mjs",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.mjs"
+    "dev": "nodemon test.mjs"
   },
   "dependencies": {
     "node-fetch": "^3.1.0",
     "ws": "^8.4.0"
+  },
+  "devDependencies": {
+    "dotenv": "^11.0.0"
   }
 }
