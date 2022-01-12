@@ -4,7 +4,6 @@ blowjs is a bubblez api wrapper meant for ease of use and optimization, along wi
 Want to learn how to use blowjs? Visit the docs <u>[here](/DOCS.md)</u>.
 
 ## Example of blowjs
-(from test.mjs)
 ```js
 import { Client } from './index.mjs';
 const client = new Client();
