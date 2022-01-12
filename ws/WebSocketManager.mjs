@@ -31,34 +31,20 @@ export default class WebSocketManager extends EventEmitter {
                 this.connection_start = Date.now();
             });
 
-            this.ws.on('message', (data) => {
+            this.ws.on('message', async (data) => {
                 const payload = JSON.parse(data.toString());
+
                 const { message } = payload;
 
-                switch(message) {
-                    case 'AUTHENTICATION_REQUIRED':
-                        this.ws.send(JSON.stringify({
-                            'message': 'SEND_TOKEN',
-                            'token': token,
-                            'version': Constants.API_VERSION
-                        }));
-                        break;
-
-                    case 'AUTHENTICATED':
-                        setInterval(() => {
-                            this.sendHeartbeat();
-                        }, 40000);
-                        break;
-
-                    case 'HEARTBEAT_MISSED':
-                        debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Heartbeat missed! Sending another heartbeat`) : 0;
-                        this.sendHeartbeat();
-                        break;
-
-                    case 'HEARTBEAT_ACK':
-                        debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Heartbeat has been acknowledged`) : 0;
-                        break;
+                if(message == 'AUTHENTICATION_REQUIRED') {
+                    return this.ws.send(JSON.stringify({
+                        'message': 'SEND_TOKEN',
+                        'token': token,
+                        'version': Constants.API_VERSION
+                    }));
                 }
+
+                await import(`../handlers/${message}.mjs`).then(module => module.default(this.client, this, debug, payload));
             });
 
             this.ws.on('close', (code) => {
