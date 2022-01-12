@@ -27,8 +27,6 @@
 ### The user class
 The user class will provide you with all information that is avaliable about the user, replies can only be seen if the user is the client - otherwise the `replies` object will be nullified (why this happens is beyond me).
 
-As a fair warning, currently the user class has no functionality other than retrieving information for the `ready` event.
-
 ```js
 {
     client: Client,
