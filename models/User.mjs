@@ -3,10 +3,12 @@ import Reply from "./Reply.mjs";
 
 export default class User {
     constructor(
+        client,
         found, uuid, username, displayName, email, pfp, banner, coins,
         rank, recentEvent, patreon, booster, bio, nsfw, birthdate, pronouns,
         banned, createdAt, lastPosted, posts, replies
     ) {
+        this.client = client;
         this.found = found === "Found user" ? true : false;
         this.uuid = uuid;
         this.username = username;
@@ -35,6 +37,7 @@ export default class User {
 
                 this.posts.push(
                     new Post(
+                        this.client,
                         post.postid,
                         post.username,
                         post.content,
@@ -56,12 +59,14 @@ export default class User {
 
                 this.replies.push(
                     new Reply(
+                        this.client,
                         reply.replyid,
                         reply.postid,
                         reply.username,
                         reply.content,
                         reply.rnsfw,
                         reply.edited,
+                        reply.from,
                         reply.reply_date
                     )
                 )
