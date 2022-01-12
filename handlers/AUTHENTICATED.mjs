@@ -13,6 +13,7 @@ export default async function(wsm, debug, payload) {
     }).then(r => r.json());
     
     wsm.client.emit('ready', new User(
+        wsm.client,
         user['200'],
         user.uuid,
         user.username,

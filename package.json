@@ -1,8 +1,9 @@
 {
   "name": "blowjs",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "index.mjs",
   "license": "MIT",
+  "repository": "https://github.com/asciidude/blowjs.git",
   "scripts": {
     "dev": "nodemon test.mjs"
   },
