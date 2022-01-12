@@ -94,4 +94,26 @@ export default class Post {
 
         return post.postid;
     }
+
+    async reply(message, from, nsfw) {
+        if(!this.id) throw `[blowjs | Reply]: The ID provided is invalid, unable to reply`;
+        if(!message) throw `[blowjs | Reply]: Cannot create an empty reply, provide a message`;
+
+        let params = new URLSearchParams();
+        params.append('token', this.client.ws.token);
+        params.append('postid', this.id);
+        params.append('reply', message);
+        params.append('from', from);
+        params.append('nsfw', nsfw);
+
+        const reply = await fetch(`${Constants.API_URL}/reply/send`, {
+            method: 'POST',
+            body: params,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(r => r.json());
+
+        if(reply.error) throw `[blowjs | Reply]: Cannot reply to post, it is either locked or doesn't exist`;
+
+        return { id: reply.replyid, post: reply.postid };
+    }
 }
