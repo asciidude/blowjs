@@ -64,7 +64,7 @@ export default class WebSocketManager extends EventEmitter {
             this.ws.on('close', (code) => {
                 this.connection_end = Date.now();
                 debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Websocket closed on code ${code} and lasted ${this.connection_end - this.connection_start}ms`) : 0;
-                this.emit('close', code);
+                this.client.emit('close', code);
                 
                 if(code == 4004) throw `[blowjs | WebSocketManager]: The token provided was invalid`;
             });
