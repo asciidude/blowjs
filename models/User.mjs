@@ -27,7 +27,7 @@ export default class User {
         this.pronouns = pronouns === "none" ? null : pronouns;
         this.banned = banned === null ? false : true;
         this.createdAt = new Date(createdAt);
-        this.lastPosted = lastPosted;
+        this.lastPosted = new Date(lastPosted);
         this.posts = [];
         this.replies = [];
 
