@@ -6,6 +6,7 @@
 * [Events](#events)
 * [Users](#users)
 * [Posts](#posts)
+* [Replies](#replies)
 
 ## Events
 ### The list of events and their descriptions - along with their return value(s)
@@ -65,5 +66,9 @@ As a fair warning, currently the user class has no functionality other than retr
 ```
 
 ## Posts
+
+This section is a work in progress, aka no information is yet provided.
+
+## Replies
 
 This section is a work in progress, aka no information is yet provided.
