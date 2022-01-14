@@ -6,7 +6,7 @@ export default class User {
         client,
         found, uuid, username, displayName, email, pfp, banner, coins,
         rank, recentEvent, patreon, booster, bio, nsfw, birthdate, pronouns,
-        banned, createdAt, lastPosted, posts, replies
+        banned, createdAt, lastPosted, posts
     ) {
         this.client = client;
         this.found = found === "Found user" ? true : false;
@@ -29,7 +29,6 @@ export default class User {
         this.createdAt = new Date(createdAt);
         this.lastPosted = new Date(lastPosted);
         this.posts = [];
-        this.replies = [];
 
         if(posts != null) {
             for(const post of posts) {
@@ -52,27 +51,9 @@ export default class User {
         } else {
             this.posts = null;
         }
+    }
 
-        if(replies != null) {
-            for(const reply of replies) {
-                if(replies.length == 0) return this.replies = null;
-
-                this.replies.push(
-                    new Reply(
-                        this.client,
-                        reply.replyid,
-                        reply.postid,
-                        reply.username,
-                        reply.content,
-                        reply.rnsfw,
-                        reply.edited,
-                        reply.from,
-                        reply.reply_date
-                    )
-                )
-            }
-        } else {
-            this.replies = null;
-        }
+    async get(id) {
+        // work on later
     }
 }

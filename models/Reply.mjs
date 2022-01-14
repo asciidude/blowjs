@@ -23,9 +23,9 @@ export default class Reply {
      * @param {String} message The message that will be provided in the reply
      * @param {String} from The text by the date
      * @param {Boolean} nsfw Determines whether or not the reply is marked as NSFW
-     * @returns 
+     * @returns object: id (reply id), post (post id)
      */
-     async create(id, message, from='blowjs', nsfw=false) {
+    async create(id, message, from='blowjs', nsfw=false) {
         if(!id) throw `[blowjs | Reply]: Cannot reply to nothing, provide a post ID`;
         if(!message) throw `[blowjs | Reply]: Cannot create an empty reply, provide a message`;
 
@@ -44,6 +44,6 @@ export default class Reply {
 
         if(reply.error) throw `[blowjs | Reply]: Cannot reply to post, it is either locked or doesn't exist`;
 
-       return { id: reply.replyid, post: reply.postid };
-   }
+        return { id: reply.replyid, post: reply.postid };
+    }
 }

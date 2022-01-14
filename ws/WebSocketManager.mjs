@@ -11,7 +11,7 @@ export default class WebSocketManager extends EventEmitter {
         super();
         this.client = client;
         this.ws = new WebSocket(Constants.WS_URL);
-        
+
         this.connection_start = null;
         this.connection_end = null;
 
@@ -27,7 +27,7 @@ export default class WebSocketManager extends EventEmitter {
     async connect(token) {
         if(!token) throw `[blowjs | WebSocketManager]: No token has been provided`;
         this.token = token;
-        
+
         try {
             this.ws.on('open', () => {
                 debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Websocket opened`) : 0;
@@ -45,7 +45,7 @@ export default class WebSocketManager extends EventEmitter {
                 this.connection_end = Date.now();
                 debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Websocket closed on code ${code} and lasted ${this.connection_end - this.connection_start}ms`) : 0;
                 this.client.emit('close', code);
-                
+
                 if(code == 4004) throw `[blowjs | WebSocketManager]: The token provided was invalid`;
             });
 

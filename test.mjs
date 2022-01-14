@@ -4,8 +4,8 @@ const client = new Client();
 import dotenv from 'dotenv';
 dotenv.config();
 
-client.once('ready', user => {
-    console.log(`👀 Logged in as ${user.username}`);
+client.once('ready', () => {
+    console.log(`👀 Logged in as ${client.user.username}`);
 });
 
 client.on('post', post => {

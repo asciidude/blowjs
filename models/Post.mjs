@@ -19,7 +19,7 @@ export default class Post {
         if(replies != null) {
             for(const reply of replies) {
                 if(replies.length == 0) return this.replies = null;
-    
+
                 this.replies.push(
                     new Reply(
                         this.client,
@@ -42,7 +42,7 @@ export default class Post {
     /**
      * Return a post object
      * @param {String} id The ID of the post to get
-     * @returns 
+     * @returns Post object
      */
     async get(id) {
         let params = new URLSearchParams();
@@ -74,9 +74,9 @@ export default class Post {
      * @param {String} from The message by the post date
      * @param {Boolean} locked Determines if users can reply to the post
      * @param {Boolean} nsfw Determines whether or not the post is NSFW
-     * @returns 
+     * @returns post id
      */
-     async create(message, from='blowjs', locked=false, nsfw=false) {
+    async create(message, from='blowjs', locked=false, nsfw=false) {
         if(!message) throw `[blowjs | Post]: Cannot create an empty post, provide a message`;
 
         let params = new URLSearchParams();
@@ -95,6 +95,13 @@ export default class Post {
         return post.postid;
     }
 
+    /**
+     * Create a reply to the current post
+     * @param message The message of the reply
+     * @param from The text beside the post timestamp
+     * @param nsfw Determines whether there is an NSFW tag on your reply
+     * @returns object: id (reply id), post (post id)
+     */
     async reply(message, from, nsfw) {
         if(!this.id) throw `[blowjs | Reply]: The ID provided is invalid, unable to reply`;
         if(!message) throw `[blowjs | Reply]: Cannot create an empty reply, provide a message`;

@@ -1,12 +1,12 @@
-##### *The documentation is currently a work in progress, it may seem messy or uninformative. I plan on improving this.*
+<sm>*The documentation is currently a work in progress, it may seem messy or uninformative. I plan on improving this.*</sm>
 
 # blowjs documentation
 
 ## Table of Contents
 * [Events](#events)
-* [Users](#users)
-* [Posts](#posts)
-* [Replies](#replies)
+* [Users](#user)
+* [Posts](#post)
+* [Replies](#reply)
 
 ## Events
 ### The list of events and their descriptions - along with their return value(s)
@@ -22,10 +22,11 @@
 **NEW_REPLY:** This will fire the `reply` event, which will also return the `Reply` data.\
 **UNFOLLOWED:** This will fire the `unfollow` event, the payload data is once again not converted to the `User` class yet - though it will turn a user.
 
-## Users
+## User
 
 ### The user class
-The user class will provide you with all information that is avaliable about the user, replies can only be seen if the user is the client - otherwise the `replies` object will be nullified (why this happens is beyond me).
+
+The user class will provide you with all information that is avaliable about the user, replies are only available to the client, look at [ClientUser](#ClientUser) to see this
 
 ```js
 {
@@ -54,9 +55,56 @@ The user class will provide you with all information that is avaliable about the
 }
 ```
 
-## Posts
+## ClientUser
+
+### The client user class
+
+The client user class provides all information about the client user, along with some functionality only for the ClientUser (eg. being able to see replies).
+
+```js
+{
+    client: Client,
+    found: Boolean,
+    uuid: String,
+    username: String,
+    displayName: String,
+    email: String,
+    pfp: String,
+    banner: String,
+    coins: Number,
+    rank: String,
+    recentEvent: String,
+    patreon: Boolean,
+    booster: Boolean,
+    bio: String,
+    nsfw: Boolean,
+    birthdate: String,
+    pronouns: String,
+    banned: Boolean,
+    createdAt: Date,
+    lastPosted: Date,
+    posts: Array,
+    replies: Array
+}
+```
+
+### Pinging the client
+
+To ping the client, simply run `Client#user.ping();`
+
+`Client` is the client object\
+`user` is the ClientUser class, initialized with `Client`\
+`ping()` is the ping user method
+
+This will return an object containing:
+
+* ping: A ping object (found?, username, lastOnline)
+* reponseTime: The response time
+
+## Post
 
 ### The post class
+
 The post class contains all available information about posts.
 
 ```js
@@ -86,6 +134,7 @@ To get a post, simply run `Client#posts.get(id)`
 This will return a `Post` object, if the post was found
 
 ### Creating a post
+
 To create a post, run `Client#posts.create(message, from, locked, nsfw)`
 
 `Client` is the client object\
@@ -100,6 +149,7 @@ To create a post, run `Client#posts.create(message, from, locked, nsfw)`
 This will return the post ID
 
 ### Replying to a post
+
 **This is only if there is a post to reply to. See [here](#replies) to create a reply by post ID.** To reply to a post, run `Post#reply(message, from, nsfw)`
 
 `Post` is the post object\
@@ -110,12 +160,14 @@ This will return the post ID
 `nsfw` determines if the reply is marked as nsfw
 
 This will return an object containing:
+
 * id: reply id
 * post: post id
 
-## Replies
+## Reply
 
 ### The reply class
+
 The post class contains all available information about posts.
 
 ```js
@@ -134,6 +186,7 @@ The post class contains all available information about posts.
 
 
 ### Creating a reply
+
 To create a reply, run `Client#replies.create(id, message, from, nsfw)`
 
 `Client` is the client object\
@@ -146,5 +199,6 @@ To create a reply, run `Client#replies.create(id, message, from, nsfw)`
 `nsfw` determines whether or not the reply is marked as nsfw
 
 This will return an object containing:
+
 * id: reply id
 * post: post id
