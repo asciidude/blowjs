@@ -14,9 +14,21 @@ export default class Client extends EventEmitter {
         this.posts = new Post(this);
         this.replies = new Reply(this);
         this.users = new User(this);
+        this.user = null;
+    }
+
+    async login(token) {
+        await this.ws.connect(token);
 
         // ClientUser
-        const user = this.#getClientUser();
+        let params = new URLSearchParams();
+        params.append('token', this.ws.token);
+
+        const user = await fetch(`${Constants.API_URL}/user/check`, {
+            method: 'POST',
+            body: params,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(r => r.json());
 
         this.user = new ClientUser(
             this,
@@ -42,20 +54,5 @@ export default class Client extends EventEmitter {
             user.posts,
             user.replies
         );
-    }
-
-    async #getClientUser() {
-        let params = new URLSearchParams();
-        params.append('token', this.ws.token);
-
-        return await fetch(`${Constants.API_URL}/user/check`, {
-            method: 'POST',
-            body: params,
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        }).then(r => r.json());
-    }
-
-    async login(token) {
-        await this.ws.connect(token);
     }
 }

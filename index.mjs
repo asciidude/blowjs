@@ -14,7 +14,8 @@ import Ping from './client/ClientUser.mjs';
 // WebSocket
 import WebSocketManager from './ws/WebSocketManager.mjs';
 
+export default Client;
 export {
-    Client, Constants, Post, Reply, User, WebSocketManager,
+    Constants, Post, Reply, User, WebSocketManager,
     ClientUser, Ping
 }

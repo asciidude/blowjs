@@ -5,7 +5,7 @@ Want to learn how to use blowjs? Visit the docs <u>[here](/DOCS.md)</u> (only ac
 
 ## Example of blowjs
 ```js
-import { Client } from 'blowjs';
+import Client from 'blowjs';
 const client = new Client();
 
 import dotenv from 'dotenv';
