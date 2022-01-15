@@ -4,10 +4,8 @@
 
 <h2 align="center">
     blowjs
+    <br>
 </h2>
-
-<hr>
-<br>
 
 blowjs is a bubblez api wrapper meant for ease of use and optimization, along with confirgurability
 
