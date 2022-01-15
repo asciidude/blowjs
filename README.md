@@ -1,4 +1,14 @@
-# blowjs
+<p align="center">
+    <img src="./images/blowjs-ico.png" width=250>
+</p>
+
+<h2 align="center">
+    blowjs
+</h2>
+
+<hr>
+<br>
+
 blowjs is a bubblez api wrapper meant for ease of use and optimization, along with confirgurability
 
 Want to learn how to use blowjs? Visit the docs [here](/DOCS.md) (only accessible on GitHub).
