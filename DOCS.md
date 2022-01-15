@@ -202,3 +202,31 @@ This will return an object containing:
 
 * id: reply id
 * post: post id
+
+## Blogs/Devlogs
+
+### The blog class
+
+The post class contains all available information about posts.
+
+```js
+{
+    client: Client,
+    found: Boolean,
+    id: String,
+    poster: String,
+    content: String,
+    createdAt: Date
+}
+```
+
+
+### Getting the latest blog
+
+To get the latest blog post, run `Client#blogs.getLatest()`
+
+`Client` is the client object\
+`blogs` is the Reply class, initialized with Client\
+`getLatest()` is the get latest method
+
+This will return the Blog class

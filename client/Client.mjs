@@ -6,6 +6,7 @@ import User from '../models/User.mjs';
 import ClientUser from './ClientUser.mjs';
 import fetch from 'node-fetch';
 import { Constants } from '../constants/Constants.mjs';
+import Blog from '../models/Blog.mjs';
 
 export default class Client extends EventEmitter {
     constructor() {
@@ -14,6 +15,7 @@ export default class Client extends EventEmitter {
         this.posts = new Post(this);
         this.replies = new Reply(this);
         this.users = new User(this);
+        this.blogs = new Blog(this);
         this.user = null;
     }
 
