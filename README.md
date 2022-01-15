@@ -5,22 +5,31 @@ Want to learn how to use blowjs? Visit the docs <u>[here](/DOCS.md)</u> (only ac
 
 ## Example of blowjs
 ```js
-import Client from 'blowjs';
+import Client from './index.mjs';
 const client = new Client();
 
 import dotenv from 'dotenv';
 dotenv.config();
 
-client.once('ready', user => {
-    console.log(`👀 Logged in as ${user.username}`);
+console.log('👌 Loading up blowjs!');
+
+client.once('ready', async() => {
+    console.log(`👀 Logged in as ${client.user.username}`);
 });
 
-client.on('post', post => {
-    console.log(`🎉 New post! ${post.content}`);
-});
+client.on('post', async post => {
+    console.log(`😉 A new post has been posted with the content of "${post.content}"`);
 
-client.on('reply', reply => {
-    console.log(`🎉 New reply! ${reply.content}`);
+    switch(post.content) {
+        case 'hello blowjs':
+            post.reply('hi :)', null, false);
+            break;
+
+        case 'whats the latest devlog?':
+            const latestBlog = await client.blogs.getLatest();
+            post.reply(latestBlog.content);
+            break;
+    }
 });
 
 client.once('close', code => {

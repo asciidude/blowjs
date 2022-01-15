@@ -6,29 +6,23 @@ dotenv.config();
 
 console.log('👌 Loading up blowjs!');
 
-client.once('ready', () => {
+client.once('ready', async() => {
     console.log(`👀 Logged in as ${client.user.username}`);
 });
 
-client.on('post', post => {
+client.on('post', async post => {
     console.log(`😉 A new post has been posted with the content of "${post.content}"`);
 
-    // TODO: Switch to command handler
     switch(post.content) {
-        case 'hello_bot':
+        case 'hello blowjs':
             post.reply('hi :)', null, false);
             break;
 
-        case 'latest_devlog?':
-            post.reply(
-                client.blogs.getLatest().content
-            );
+        case 'whats the latest devlog?':
+            const latestBlog = await client.blogs.getLatest();
+            post.reply(latestBlog.content);
             break;
     }
-});
-
-client.on('reply', reply => {
-    console.log(`🎉 New reply! ${reply.content}`);
 });
 
 client.once('close', code => {
