@@ -1,10 +1,6 @@
-<p align="center" style="margin-bottom:0px;">
+<p align="center">
     <img src="./images/blowjs-ico.png" width=250>
 </p>
-
-<h2 align="center">
-    blowjs
-</h2>
 
 blowjs is a bubblez api wrapper meant for ease of use and optimization, along with confirgurability
 
