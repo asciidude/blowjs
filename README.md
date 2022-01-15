@@ -1,7 +1,9 @@
 # blowjs
 blowjs is a bubblez api wrapper meant for ease of use and optimization, along with confirgurability
 
-Want to learn how to use blowjs? Visit the docs <u>[here](/DOCS.md)</u> (only accessible on GitHub).
+Want to learn how to use blowjs? Visit the docs [here](/DOCS.md) (only accessible on GitHub).
+
+Having issues and need support? Visit our Discord [here](https://discord.gg/czfj9DyY7F).
 
 ## Example of blowjs
 ```js
