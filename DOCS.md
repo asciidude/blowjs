@@ -55,6 +55,18 @@ The user class will provide you with all information that is avaliable about the
 }
 ```
 
+### Getting a user
+
+To get a user, simply run `Client#users.get(username)`
+
+`Client` is the client object\
+`users` is the User class, initialized with `Client`\
+`get()` is the get user method
+
+`username` is the username of the user to search for
+
+This will return a `User` object, if the user was found
+
 ## ClientUser
 
 ### The client user class
@@ -219,7 +231,6 @@ The post class contains all available information about posts.
     createdAt: Date
 }
 ```
-
 
 ### Getting the latest blog
 
