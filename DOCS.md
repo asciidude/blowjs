@@ -8,7 +8,7 @@
     * [Event descriptions](#the-list-of-events-and-their-descriptions---along-with-their-return-values)
 * [Users](#user)
     * [The user class](#the-user-class)
-    * [Getting a user](##getting-a-user)
+    * [Getting a user](#getting-a-user)
 * [ClientUser](#clientuser)
     * [The client user class](#the-client-user-class)
     * [Pinging the client](#pinging-the-client)
