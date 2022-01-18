@@ -3,12 +3,15 @@
 # blowjs documentation
 
 ## Table of Contents
+
 * [Events](#events)
 * [Users](#user)
 * [Posts](#post)
 * [Replies](#reply)
+* [Blogs/Devlogs](#blog)
 
 ## Events
+
 ### The list of events and their descriptions - along with their return value(s)
 
 **AUTHENTICATED:** This will fire the `ready` event.\
@@ -215,7 +218,7 @@ This will return an object containing:
 * id: reply id
 * post: post id
 
-## Blogs/Devlogs
+## Blog
 
 ### The blog class
 
@@ -240,4 +243,4 @@ To get the latest blog post, run `Client#blogs.getLatest()`
 `blogs` is the Reply class, initialized with Client\
 `getLatest()` is the get latest method
 
-This will return the Blog class
+This will return the `Blog` class
