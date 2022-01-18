@@ -19,7 +19,7 @@
     * [Replying to a post](#replying-to-a-post)
 * [Replies](#reply)
     * [The reply class](#the-reply-class)
-    * [Creating a reply](#getting-a-reply)
+    * [Creating a reply](#creating-a-reply)
 * [Blogs/Devlogs](#blog)
     * [The blog class](#the-blog-class)
     * [Getting the latest blog](#getting-the-latest-blog)
