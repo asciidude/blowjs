@@ -5,10 +5,24 @@
 ## Table of Contents
 
 * [Events](#events)
+    * [Event Descriptions](#the-list-of-events-and-their-descriptions---along-with-their-return-values)
 * [Users](#user)
+    * [The user class](#the-user-class)
+    * [Getting a user](##getting-a-user)
+* [ClientUser](#clientuser)
+    * [The client user class](#the-client-user-class)
+    * [Pinging the client](#pinging-the-client)
 * [Posts](#post)
+    * [The post class](#the-post-class)
+    * [Getting a post](#getting-a-post)
+    * [Creating a post](#creating-a-post)
+    * [Replying to a post](#replying-to-a-post)
 * [Replies](#reply)
+    * [The reply class](#the-reply-class)
+    * [Creating a reply](#getting-a-reply)
 * [Blogs/Devlogs](#blog)
+    * [The blog class](#the-blog-class)
+    * [Getting the latest blog](#getting-the-latest-blog)
 
 ## Events
 
