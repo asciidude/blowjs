@@ -4,8 +4,8 @@ import Reply from "./Reply.mjs";
 export default class User {
     constructor(
         client,
-        found, uuid, username, displayName, email, pfp, banner, coins,
-        rank, recentEvent, patreon, booster, bio, nsfw, birthdate, pronouns,
+        found, uuid, username, displayName, pfp, banner, coins,
+        rank, recentEvent, patreon, booster, bio, nsfw, pronouns,
         banned, createdAt, lastPosted, posts
     ) {
         this.client = client;
@@ -13,7 +13,6 @@ export default class User {
         this.uuid = uuid;
         this.username = username;
         this.displayName = displayName;
-        this.email = email;
         this.pfp = pfp;
         this.banner = banner;
         this.coins = coins;
@@ -23,7 +22,6 @@ export default class User {
         this.booster = booster === "true" ? true : false || booster;
         this.bio = bio === "" ? true : false;
         this.nsfw = nsfw === "true" ? true: false || nsfw;
-        this.birthdate = birthdate;
         this.pronouns = pronouns === "none" ? null : pronouns;
         this.banned = banned === null ? false : true;
         this.createdAt = new Date(createdAt);
@@ -53,7 +51,42 @@ export default class User {
         }
     }
 
-    async get(id) {
-        // work on later
+    /**
+     * Search for a user by username
+     * @param username The username to search for
+     * @returns User class
+     */
+    async get(username) {
+        let params = new URLSearchParams();
+        params.append('token', this.client.ws.token);
+        params.append('username', username);
+
+        const user = await fetch(`${Constants.API_URL}/user/get`, {
+            method: 'POST',
+            body: params,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(r => r.json());
+
+        return new User(
+            this.client,
+            user['200'],
+            user.uuid,
+            user.username,
+            user.displayname,
+            user.pfp,
+            user.banner,
+            user.coins,
+            user.rank,
+            user.eventr,
+            user.patreon,
+            user.booster,
+            user.bio,
+            user.nsfw,
+            user.pronoun,
+            user.ban,
+            user.created_at,
+            user.last_posted,
+            user.posts
+        );
     }
 }

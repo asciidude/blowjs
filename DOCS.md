@@ -11,16 +11,16 @@
 ## Events
 ### The list of events and their descriptions - along with their return value(s)
 
-**AUTHENTICATED:** This will fire the `ready` event, this means the client is ready to be used. This will also create an interval, the interval time is decided by the server - if no interval time has been provided it will default to `4000` (4s).\
-**AUTHENTICATION_REQUIRED:** This will send the token to the Bubblez API, along with the API version which is being used (configurable using `Constants`, which can be changed in the `Client` class).\
+**AUTHENTICATED:** This will fire the `ready` event.\
+**AUTHENTICATION_REQUIRED:** This will send your token to the Bubblez API.\
 **HEARTBEAT_ACK:** This will notify you that the heartbeat sent was acknowledged, if it was not it should move on to the `HEARTBEAT_MISSED` event, to re-send the heartbeat.\
 **HEARTBEAT_MISSED:** This will re-send the heartbeat if the heartbeat sent before was zombified.\
-**NEW_DEVLOG:** This will fire the `devlog` event, though the payload data is not yet converted to the `Post` class - it will return the payload data.\
-**NEW_FOLLOWER:** This will fire the `follow` event, the payload data is once again not converted to the `User` class yet - though it will turn a user.\
-**NEW_LIKE:** This will fire the `like` event, though the payload data is not yet converted to the `Post` class - it will return the payload data.\
-**NEW_POST:** This will fire the `post` event, which will return post data.\
-**NEW_REPLY:** This will fire the `reply` event, which will also return the `Reply` data.\
-**UNFOLLOWED:** This will fire the `unfollow` event, the payload data is once again not converted to the `User` class yet - though it will turn a user.
+**NEW_DEVLOG:** This will fire the `devlog` event, returning a `Blog` class.\
+**NEW_FOLLOWER:** This will fire the `follow` event, returning the `User` class.\
+**NEW_LIKE:** This will fire the `like` event, returning a `User` class.\
+**NEW_POST:** This will fire the `post` event, returning a `Post` class.\
+**NEW_REPLY:** This will fire the `reply` event, returning a `Reply` class.\
+**UNFOLLOWED:** This will fire the `unfollow` event, returning a `User` class.
 
 ## User
 
