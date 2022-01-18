@@ -5,7 +5,7 @@
 ## Table of Contents
 
 * [Events](#events)
-    * [Event Descriptions](#the-list-of-events-and-their-descriptions---along-with-their-return-values)
+    * [Event descriptions](#the-list-of-events-and-their-descriptions---along-with-their-return-values)
 * [Users](#user)
     * [The user class](#the-user-class)
     * [Getting a user](##getting-a-user)
