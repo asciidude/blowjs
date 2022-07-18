@@ -45,6 +45,9 @@ client.login(process.env.TOKEN);
 
 # Recent Updates
 * Switched to `yarn`
+* Optimized debug logs
+* Exported wsmDebug in index.mjs
+* Edited test.mjs to demonstrate more
 
 ##### Bubblez Approval
 ###### [Bubblez.app](https://bubblez.app/library#blowjs) has approved blowjs
