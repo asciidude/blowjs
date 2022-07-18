@@ -1,10 +1,12 @@
 import Client from './index.mjs';
+import { wsmDebug } from './index.mjs';
 const client = new Client();
 
 import dotenv from 'dotenv';
 dotenv.config();
 
 console.log('👌 Loading up blowjs!');
+wsmDebug.logEvents = true
 
 client.once('ready', async() => {
     console.log(`👀 Logged in as ${client.user.username}`);
@@ -15,7 +17,7 @@ client.on('post', async post => {
 
     switch(post.content) {
         case 'hello blowjs':
-            post.reply('hi :)', null, false);
+            post.reply('hi :)', 'epic blowjs bot', false);
             break;
 
         case 'whats the latest devlog?':

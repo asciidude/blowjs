@@ -14,9 +14,10 @@ import Blog from './models/Blog.mjs';
 
 // WebSocket
 import WebSocketManager from './ws/WebSocketManager.mjs';
+import wsmDebug from './ws/WebSocketManager.mjs';
 
 export default Client;
 export {
     Constants, Post, Reply, User, WebSocketManager,
-    ClientUser, Ping, Blog
+    ClientUser, Ping, Blog, wsmDebug
 }

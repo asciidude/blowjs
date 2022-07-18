@@ -43,5 +43,8 @@ client.once('close', code => {
 client.login(process.env.TOKEN);
 ```
 
+# Recent Updates
+* Switched to `yarn`
+
 ##### Bubblez Approval
 ###### [Bubblez.app](https://bubblez.app/library#blowjs) has approved blowjs
