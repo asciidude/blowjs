@@ -5,7 +5,7 @@
 blowjs is a bubblez library meant for ease of use and optimization, along with confirgurability
 
 * Want to learn how to use blowjs? Visit the docs [here](/DOCS.md) (only accessible on GitHub).
-* Having issues and need support? Visit our Discord [here](https://discord.gg/czfj9DyY7F).
+* Having issues and need support? ~~Visit our Discord [here](https://discord.gg/czfj9DyY7F).~~ Discord deleted! Just make an issue in GitHub
 
 ## Example of blowjs
 ```js
