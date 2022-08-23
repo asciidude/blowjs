@@ -19,9 +19,9 @@ export default class WebSocketManager extends EventEmitter {
     }
 
     async sendHeartbeat() {
-        if(debug.logEvents) console.log(`[blowjs | WebSocketManager]: Sending heartbeat to Bubblez API`);
+        if(wsmDebug.logEvents) console.log(`[blowjs | WebSocketManager]: Sending heartbeat to Bubblez API`);
         this.ws.send(JSON.stringify({ 'message': 'HEARTBEAT' }));
-        if(debug.logEvents) console.log(`[blowjs | WebSocketManager]: `);
+        if(wsmDebug.logEvents) console.log(`[blowjs | WebSocketManager]: `);
     }
 
     async connect(token) {
@@ -30,7 +30,7 @@ export default class WebSocketManager extends EventEmitter {
 
         try {
             this.ws.on('open', () => {
-                if(debug.logEvents) console.log(`[blowjs | WebSocketManager]: Websocket opened`);
+                if(wsmDebug.logEvents) console.log(`[blowjs | WebSocketManager]: Websocket opened`);
                 this.connection_start = Date.now();
             });
 
@@ -38,19 +38,19 @@ export default class WebSocketManager extends EventEmitter {
                 const payload = JSON.parse(data.toString());
                 const { message } = payload;
 
-                await import(`../handlers/${message}.mjs`).then(module => module.default(this, debug, payload));
+                await import(`../handlers/${message}.mjs`).then(module => module.default(this, wsmDebug, payload));
             });
 
             this.ws.on('close', (code) => {
                 this.connection_end = Date.now();
-                if(debug.logEvents) console.log(`[blowjs | WebSocketManager]: Websocket closed on code ${code} and lasted ${this.connection_end - this.connection_start}ms`);
+                if(wsmDebug.logEvents) console.log(`[blowjs | WebSocketManager]: Websocket closed on code ${code} and lasted ${this.connection_end - this.connection_start}ms`);
                 this.client.emit('close', code);
 
                 if(code == 4004) throw `[blowjs | WebSocketManager]: The token provided was invalid`;
             });
 
             process.once('SIGINT', async () => {
-                debug.logEvents ? console.log(`[blowjs | WebSocketManager]: Process interrupt signal recieved, closing`) : 0;
+                if(wsmDebug.logEvents) console.log(`[blowjs | WebSocketManager]: Process interrupt signal recieved, closing`);
                 this.client.emit('interrupt' && 'close', 'SIGINT');
                 await process.exit();
             })
