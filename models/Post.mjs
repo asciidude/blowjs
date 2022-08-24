@@ -7,7 +7,7 @@ export default class Post {
         client, id, author, content, locked, nsfw, edited, createdAt, replies
     ) {
         this.id = id;
-        this.author = author;
+        this.author = getAuthor(client, author);
         this.locked = locked;
         this.content = content;
         this.nsfw = nsfw;
@@ -170,4 +170,13 @@ export default class Post {
 
         if(post.error) throw `[blowjs | Reply]: Cannot delete post, it doesn't exist or you don't have permission to delete it.`;
     }
+}
+
+/**
+ * WARNING: This should not be used by anyone, this is simply so I can get the reply author
+ */
+const getAuthor = async (client, author) => {
+    const returnedAuthor = await new User(client).get(author);
+    if(!returnedAuthor) return null;
+    else return returnedAuthor;
 }
