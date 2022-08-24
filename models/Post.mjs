@@ -103,7 +103,7 @@ export default class Post {
      * @param nsfw Determines whether there is an NSFW tag on your reply
      * @returns object: id (reply id), post (post id)
      */
-    async reply(message, from, nsfw) {
+    async reply(message, from='blowjs', nsfw=false) {
         if(!this.id) throw `[blowjs | Reply]: The ID provided is invalid, unable to reply`;
         if(!message) throw `[blowjs | Reply]: Cannot create an empty reply, provide a message`;
 

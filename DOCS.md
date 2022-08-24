@@ -263,7 +263,7 @@ This will return an object containing:
 
 ### Deleting a reply
 
-To delete a reply, run `Client#replies.delete(id, confirm)`
+**If you do not have permission to delete a reply, it will return an error.** To delete a reply, run `Client#replies.delete(id, confirm)`
 
 `Client` is the client object\
 `replies` is the Reply class initialized with Client\

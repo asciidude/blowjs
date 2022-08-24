@@ -17,7 +17,7 @@ client.on('post', async post => {
 
     switch(post.content) {
         case 'hello blowjs':
-            post.reply('hi :)', 'epic blowjs bot', false);
+            post.reply('hi :)');
             break;
 
         case 'whats the latest devlog?':
