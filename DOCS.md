@@ -1,6 +1,6 @@
 <sm>*The documentation is currently a work in progress, it may seem messy or uninformative. I plan on improving this.*</sm>
 
-<sm>If you have any suggestions create an issue, pull request, or directly message me on Discord (asciidude#0001)</sm>
+<sm>If you have any suggestions create an issue, pull request, or directly message me on Discord (`asciidude#0001`)</sm>
 
 # blowjs documentation
 
