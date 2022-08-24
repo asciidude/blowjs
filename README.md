@@ -2,7 +2,7 @@
     <img src="./images/blowjs-ico.png" width=250>
 </p>
 
-blowjs is a bubblez library meant for ease of use and optimization, along with confirgurability
+blowjs is a Bubblez.app library meant for ease of use and optimization, along with confirgurability
 
 * Want to learn how to use blowjs? Visit the docs [here](/DOCS.md) (only accessible on GitHub).
 * Having issues and need support? ~~Visit our Discord [here](https://discord.gg/czfj9DyY7F).~~ Discord deleted! Just make an issue in GitHub
@@ -44,10 +44,7 @@ client.login(process.env.TOKEN);
 ```
 
 # Recent Updates
-* Switched to `yarn`
-* Optimized debug logs
-* Exported wsmDebug in index.mjs
-* Edited test.mjs to demonstrate more
+View all recent updates in the GitHub, I realize I will not update this section often at all
 
 ##### Bubblez Approval
 ###### [Bubblez.app](https://bubblez.app/library#blowjs) has approved blowjs
