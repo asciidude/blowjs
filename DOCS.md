@@ -20,6 +20,7 @@
     * [Creating a post](#creating-a-post)
     * [Replying to a post](#replying-to-a-post)
     * [Locking a post](#locking-a-post)
+    * [Deleting a post](#deleting-a-post)
 * [Replies](#reply)
     * [The reply class](#the-reply-class)
     * [Creating a reply](#creating-a-reply)
@@ -199,7 +200,7 @@ This will return an object containing:
 
 ### Locking a post
 
-**If you do not have permission to lock a post, it will return an error.**
+**If you do not have permission to lock a post, it will return an error.** To reply to a post, run `Post#lock(id, toggle)`
 
 `Post` is the post object\
 `lock()` is the lock method to lock a post
@@ -211,6 +212,16 @@ This will return an object containing:
 
 * id: post id
 * toggle: true/false
+
+### Deleting a post
+
+**If you do not have permission to delete a post, it will return an error.** To reply to a post, run `Post#reply(id, confirm)`
+
+`Post` is the post object\
+`delete()` is the delete method to delete a post
+
+`id` is the ID of the post\
+`confirm` is automatically set to true, though it is good practice to set this to true or false manually so you don't incidentally delete a reply
 
 ## Reply
 

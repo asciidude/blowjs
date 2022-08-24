@@ -148,4 +148,26 @@ export default class Post {
 
         return { id: id, locked: toggle };
     }
+
+    /**
+     * Delete a post
+     * @param {String} id The ID of the post to delete
+     * @param {Boolean} confirm Confirm if you want to delete this or not, automatically it is set to true
+     */
+    async delete(id, confirm=true) {
+        if(!id) throw `[blowjs | Reply]: Cannot delete nothing, please provide an ID`;
+
+        let params = new URLSearchParams();
+        params.append('token', this.client.ws.token);
+        params.append('confirm', confirm);
+        params.append('postid', id);
+
+        const post = await fetch(`${Constants.API_URL}/post/delete`, {
+            method: 'POST',
+            body: params,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(r => r.json());
+
+        if(post.error) throw `[blowjs | Reply]: Cannot delete post, it doesn't exist or you don't have permission to delete it.`;
+    }
 }
