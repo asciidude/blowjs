@@ -1,5 +1,6 @@
 import Post from "./Post.mjs";
-import Reply from "./Reply.mjs";
+import fetch from "node-fetch";
+import { Constants } from "../constants/Constants.mjs";
 
 export default class User {
     constructor(

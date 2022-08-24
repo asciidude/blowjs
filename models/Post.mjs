@@ -1,5 +1,6 @@
 import { Constants } from '../constants/Constants.mjs';
 import fetch from 'node-fetch';
+import User from './User.mjs';
 
 export default class Post {
     constructor(
@@ -58,7 +59,7 @@ export default class Post {
         return new Post(
             this.client,
             post.postid,
-            post.username,
+            new User(this.client).get(post.username),
             post.content,
             post.locked,
             post.pnsfw,
@@ -92,7 +93,7 @@ export default class Post {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).then(r => r.json());
 
-        return post.postid;
+        return this.get(post.postid);
     }
 
     /**
@@ -119,8 +120,32 @@ export default class Post {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).then(r => r.json());
 
-        if(reply.error) throw `[blowjs | Reply]: Cannot reply to post, it is either locked or doesn't exist`;
+        if(reply.error) throw `[blowjs | Post]: Cannot reply to post, it is either locked or doesn't exist`;
 
-        return { id: reply.replyid, post: reply.postid };
+        return { id: reply.replyid, post: this.get(reply.postid) };
+    }
+
+    /**
+     * Lock or unlock a post based off a boolean-value
+     * @param {String} id The post ID to lock
+     * @param {Boolean} toggle Lock or unlock the post
+     */
+    async lock(id, toggle) {
+        if(!toggle) throw `[blowjs | Post]: No toggle boolean has been provided`;
+
+        let params = new URLSearchParams();
+        params.append('token', this.client.ws.token);
+        params.append('togglelock', toggle);
+        params.append('postid', id);
+
+        const lock = await fetch(`${Constants.API_URL}/post/lock`, {
+            method: 'POST',
+            body: params,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(r => r.json());
+
+        if(lock.error) throw `[blowjs | Post]: Cannot lock post, you likely do not have permission`;
+
+        return { id: id, locked: toggle };
     }
 }

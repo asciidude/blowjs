@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import { Constants } from "../constants/Constants.mjs";
+import User from "./User.mjs";
 
 export default class Blog {
     constructor(
@@ -32,7 +33,7 @@ export default class Blog {
             this.client,
             blog['200'],
             blog.blogid,
-            blog.blogposter_username,
+            await new User().get(blog.blogposter_username),
             blog.blogcontent,
             blog.blogdate
         );

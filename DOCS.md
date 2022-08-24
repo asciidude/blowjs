@@ -1,5 +1,7 @@
 <sm>*The documentation is currently a work in progress, it may seem messy or uninformative. I plan on improving this.*</sm>
 
+<sm>If you have any suggestions create an issue, pull request, or directly message me on Discord (asciidude#0001)</sm>
+
 # blowjs documentation
 
 ## Table of Contents
@@ -17,10 +19,12 @@
     * [Getting a post](#getting-a-post)
     * [Creating a post](#creating-a-post)
     * [Replying to a post](#replying-to-a-post)
+    * [Locking a post](#locking-a-post)
 * [Replies](#reply)
     * [The reply class](#the-reply-class)
     * [Creating a reply](#creating-a-reply)
-* [Blogs/Devlogs](#blog)
+    * [Deleting a reply](#deleting-a-reply)
+* [Blogs](#blog)
     * [The blog class](#the-blog-class)
     * [Getting the latest blog](#getting-the-latest-blog)
 
@@ -193,6 +197,21 @@ This will return an object containing:
 * id: reply id
 * post: post id
 
+### Locking a post
+
+**If you do not have permission to lock a post, it will return an error.**
+
+`Post` is the post object\
+`lock()` is the lock method to lock a post
+
+`id` is the ID of the post\
+`toggle` is a boolean that determines if a post should be locked or not
+
+This will return an object containing:
+
+* id: post id
+* toggle: true/false
+
 ## Reply
 
 ### The reply class
@@ -213,7 +232,6 @@ The post class contains all available information about posts.
 }
 ```
 
-
 ### Creating a reply
 
 To create a reply, run `Client#replies.create(id, message, from, nsfw)`
@@ -231,6 +249,17 @@ This will return an object containing:
 
 * id: reply id
 * post: post id
+
+### Deleting a reply
+
+To delete a reply, run `Client#replies.delete(id, confirm)`
+
+`Client` is the client object\
+`replies` is the Reply class initialized with Client\
+`delete()` is the method to delete replies
+
+`id` is the reply ID to delete
+`confirm` is automatically set to true, though it is good practice to set this to true or false manually so you don't incidentally delete a reply
 
 ## Blog
 

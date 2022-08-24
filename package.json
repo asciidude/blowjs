@@ -1,11 +1,11 @@
 {
   "name": "blowjs",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "index.mjs",
   "license": "MIT",
   "repository": "https://github.com/asciidude/blowjs.git",
   "scripts": {
-    "dev": "nodemon test.mjs"
+    "dev:test": "nodemon test/bot.mjs"
   },
   "dependencies": {
     "@types/node": "^17.0.8",

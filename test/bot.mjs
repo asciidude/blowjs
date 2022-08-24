@@ -1,5 +1,5 @@
-import Client from './index.mjs';
-import { wsmDebug } from './index.mjs';
+import Client from '../index.mjs';
+import { wsmDebug } from '../index.mjs';
 const client = new Client();
 
 import dotenv from 'dotenv';
