@@ -1,4 +1,4 @@
-# ⚠ This project is no longer maintained due to Bubblez Next! ⚠
+# ⚠ This project is no longer maintained due to Bubblez Next!
 I will release an updated version specifically for Bubblez Next, as there are many API changes. As of right now, I do not want to waste my time on a project that will soon become abandoned anyways.
 
 Thank you for using blowjs! 💖
