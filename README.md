@@ -1,3 +1,12 @@
+# ⚠ This project is no longer maintained due to Bubblez Next! ⚠
+I will release an updated version specifically for Bubblez Next, as there are many API changes. As of right now, I do not want to waste my time on a project that will soon become abandoned anyways.
+
+Thank you for using blowjs! 💖
+
+<sup>All of the functions work - though logging in is still very buggy for reasons unbenounced to me. However, if you want to give it a try at fixing it then create a PR, here's what it does: it spams the API due to the User getter, so I can't make it object-oriented.</sup>
+
+-------
+
 <p align="center">
     <img src="./images/blowjs-ico.png" width=250>
 </p>
