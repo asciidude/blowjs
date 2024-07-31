@@ -18,7 +18,7 @@ blowjs is a Bubblez.app library meant for ease of use and optimization, along wi
 
 ## Example of blowjs
 ```js
-import Client from './index.mjs';
+import Client from 'blowjs';
 const client = new Client();
 
 import dotenv from 'dotenv';
